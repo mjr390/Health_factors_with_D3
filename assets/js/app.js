@@ -73,29 +73,35 @@ d3.csv("../assets/data/data.csv").then(function(stateData) {
     // ==============================
     var circlesGroup = chartGroup.selectAll("circle")
     .data(stateData)
-    .enter()
-    .append("circle")
+    .enter();
+
+    circlesGroup.append("circle")
     .attr("cx", d => xLinearScale(d.age))
     .attr("cy", d => yLinearScale(d.obesity))
-    .attr("r", "15")
+    .attr("r", "10")
     .attr("fill", "lightblue")
     .text( d => (d.abbr)) // Maybe here? Doesn't currently do anything
     .attr("opacity", ".5");
 
 
     // stateData.forEach(function(data) {
-    var testText = chartGroup.selectAll("here")
-    // .append("text")
-    .data(stateData)
-    .enter()
+    // var circlesGroup = chartGroup.selectAll("here")
+    // // .append("text")
+    // .data(stateData)
+    // .enter()
+    circlesGroup
     .append("text")
     .text(function(d){
         return d.abbr;
     })
-    .attr("x", d => xLinearScale(d.age)-(margin.right/3))
+    .attr("dx", d => xLinearScale(d.age))
     
-    .attr("y", d => yLinearScale(d.obesity)
+    .attr("dy", d => yLinearScale(d.obesity) + 10/2.5
     )
+    .attr("opacity", ".5")
+    .attr("font-size", 10)
+    .attr("text-anchor", "middle")
+    
     // .attr("fill", "white")
     ;
 // });
